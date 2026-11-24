@@ -102,7 +102,7 @@ The reported TVD values at n = 10,000, using 50,000 Monte Carlo draws, include:
 
 The dissertation describes two contrasting mechanisms: localised causal shielding, where errors outside the active causal pathway have limited impact on the target outcome; and parameter-partitioning distortion, where spurious parent links alter fitted conditional probability tables.
 
-**Important reproducibility detail:** the supplied R code selects the first factor level for each intervention target (`levels(...)[1]`). The dissertation labels these levels as `FALSE` for HYPOVOLEMIA and `absent` for Cirrhosis. Check the actual factor-level order in the generated data before interpreting or rerunning these interventions.
+**Intervention implementation note:** The supplied implementation selects the first factor level for each intervention target using `levels(...)[1]`. The dissertation reports these levels as `FALSE` for HYPOVOLEMIA and `absent` for Cirrhosis. Verify factor-level ordering in the generated datasets before reproducing the intervention experiments.
 
 ## Repository structure
 
@@ -126,11 +126,10 @@ The dissertation describes two contrasting mechanisms: localised causal shieldin
 
 ## Requirements
 
-- R (version used for the original dissertation should be recorded here once confirmed)
+- R 
 - `bnlearn`
 - `ggplot2`
 
-The original pipeline also contains `library(gRain)`, although no `gRain` function is called in the supplied script. It is therefore not listed as a required dependency for the documented workflow; remove that import from the script if it is not needed in your local environment.
 
 ## How to run
 
@@ -160,7 +159,7 @@ The original pipeline also contains `library(gRain)`, although no `gRain` functi
    Rscript R/pipeline_execution.R
    ```
 
-The pipeline expects the generated CSV files in `data/` and the three benchmark RDS files in the project root. It prints result tables and creates plots in the active R graphics device. The submitted pipeline does not currently save all plots or result tables to disk automatically; use `ggsave()` / `write.csv()` or add explicit output calls if you want a fully automated artefact export.
+The pipeline expects the generated CSV files in `data/` and the three benchmark RDS files in the project root. It prints result tables and creates plots in the active R graphics device. The current pipeline displays plots through the active R graphics device and prints result tables. It does not automatically export all figures and tables to files. Additional `ggsave()` and `write.csv()` calls can be added to automate output generation.
 
 ## Reproducibility and interpretation notes
 
